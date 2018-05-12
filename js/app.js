@@ -1,8 +1,7 @@
-/*
- * Create a list that holds all of your cards
- */
-
+/* Create htmlcollection to hold all cards  */
 const deck = document.getElementsByClassName('card');
+
+/* Convert htmlcollection to array */
 cards = Array.from(deck);
 
 /*
@@ -27,6 +26,8 @@ function shuffle(array) {
     return array;
 }
 
+/* shuffle the list of cards using "shuffle" method */
+cards = shuffle(cards);
 
 /*
  * set up the event listener for a card. If a card is clicked:
