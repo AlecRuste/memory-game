@@ -3,6 +3,7 @@
  */
 
 const deck = document.getElementsByClassName('card');
+cards = Array.from(deck);
 
 /*
  * Display the cards on the page
