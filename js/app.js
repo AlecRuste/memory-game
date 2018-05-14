@@ -1,8 +1,8 @@
 /* Create htmlcollection to hold all cards  */
-const deck = document.getElementsByClassName('card');
+const cardsHtmlCollection = document.getElementsByClassName('card');
 
 /* Convert htmlcollection to array */
-cards = Array.from(deck);
+cards = Array.from(cardsHtmlCollection);
 
 /*
  * Display the cards on the page
@@ -13,7 +13,7 @@ cards = Array.from(deck);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -28,6 +28,15 @@ function shuffle(array) {
 
 /* shuffle the list of cards using "shuffle" method */
 cards = shuffle(cards);
+
+/* select deck of cards */
+const deck = document.querySelector('.deck');
+
+/* loop through each card and add it to HTML */
+cards.forEach(function(card) {
+    deck.appendChild(card);
+    console.log(card);
+});
 
 /*
  * set up the event listener for a card. If a card is clicked:
