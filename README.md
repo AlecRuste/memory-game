@@ -10,7 +10,7 @@ Download ZIP file or clone it from this repository and simply open "index.html" 
 ## How to play
 Just click on the card to start playing.
 Reveal cards and match them.
-Try to match all cards wuth the least possible move count and try to do it as fast as possible. 
+Try to match all cards with the least possible move count and try to do it as fast as possible. 
 
 ## Contributing
 Contributions are always welcome.
