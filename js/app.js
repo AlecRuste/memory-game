@@ -129,9 +129,24 @@ function starCount() {
 // Get restart
 let restart = document.querySelector('.restart');
 
-// Reload the page on restart click
+// Reset all elements and re-shuffle all cards
 restart.onclick = function() {
-        location.reload();
+    shuffle(cards);
+    cards.forEach(function(card) {
+        deck.appendChild(card);
+        card.classList.remove('open', 'show', 'match', 'unclickable');       
+    });
+    lastTwoCards = [];
+    matchedCards = [];
+    moves[0].innerHTML = 0;
+    starsNodeList.forEach(function(star) {
+        star.innerHTML = '<i class="fa fa-star"></i>';
+    });
+    starNumber = 3;
+    secondCount = 0;
+    document.querySelector('.time').innerHTML = 0;
+    clearInterval(time);
+    time = 0;
 }
 
 // Get the modal
@@ -148,7 +163,7 @@ let playAgain = document.querySelector('.play-again');
 
 // Set win description message
 function winDescriptionMessage() {
-    winDescription.innerText = `With ${moves[0].innerText} moves and ${starNumber} stars`;
+    winDescription.innerText = `With ${moves[0].innerText} moves and ${starNumber} star(s). It took you ${secondCount} seconds to finish the game`;
 }
 
 // If all cards are open display modal and win description message 
@@ -159,7 +174,7 @@ function modalMessage() {
     } 
 }
 
-// Re-play onclick play again
+// Reload the page onclick play again
 playAgain.onclick = function() {
     location.reload();
 }
@@ -176,6 +191,36 @@ window.onclick = function(event) {
     }
 }
 
+// Set timer
+let secondCount = document.querySelector('.time').innerHTML;
+
+// Set time
+let time = 0; 
+
+// Inncrement Time
+function inncrementTime() {
+    document.querySelector('.time').innerHTML = ++secondCount;
+}
+
+// Pause of 1 second between each incrementation
+function timeInterval() {
+    time = setInterval(inncrementTime, 1000);
+}
+
+// Check to see if the game have started to count time properly
+function clickedOnce() {
+    if (time === 0) {
+        timeInterval();
+    }
+}
+
+// Stop timer if all cards are open
+function stopTimer() {
+    if (matchedCards.length === 16) {
+        clearInterval(time);
+    }
+}
+
 // Iterate through each card and call specific functions
 cards.forEach(function(card) {
     card.onclick = function() {
@@ -184,5 +229,7 @@ cards.forEach(function(card) {
         twoCards();
         starCount();
         modalMessage();
+        clickedOnce();
+        stopTimer();
     }
 });

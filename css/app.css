@@ -103,6 +103,10 @@ h1 {
     margin: 0 5px 0 0;
 }
 
+.score-panel .time {
+    padding-left: 3rem;
+}
+
 .score-panel .stars li {
     list-style: none;
     display: inline-block;
